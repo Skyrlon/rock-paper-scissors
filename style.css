@@ -1,0 +1,11 @@
+#fight,
+#result,
+#retry {
+  display: none;
+}
+
+#fight.show,
+#result.show,
+#retry.show {
+  display: block;
+}
