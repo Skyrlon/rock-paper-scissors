@@ -1,11 +1,17 @@
+#items-container,
 #fight,
 #result,
 #retry {
   display: none;
 }
 
+#items-container.show,
 #fight.show,
 #result.show,
 #retry.show {
   display: block;
+}
+
+img {
+  width: 100px;
 }
