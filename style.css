@@ -1,17 +1,67 @@
-#items-container,
-#fight,
+html,
+body {
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+}
+
+.items,
 #result,
 #retry {
   display: none;
 }
 
-#items-container.show,
-#fight.show,
+.items.show,
 #result.show,
 #retry.show {
   display: block;
 }
 
-img {
-  width: 100px;
+#fight {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#fight > * {
+  flex: 33%;
+  height: 100%;
+}
+
+#versus {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#player,
+#enemy {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.items {
+  height: 25%;
+}
+
+#result {
+  font-size: 2rem;
+  position: absolute;
+  left: 50%;
+  bottom: calc(0% + 10rem);
+  transform: translate(-50%, 0%);
+}
+
+#retry {
+  font-size: 2rem;
+  position: absolute;
+  left: 50%;
+  bottom: calc(0% + 5rem);
+  transform: translate(-50%, 0%);
 }

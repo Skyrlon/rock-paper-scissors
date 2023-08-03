@@ -1,34 +1,37 @@
-const itemsContainer = document.querySelector("#items-container");
-const itemsElements = document.querySelectorAll(".items");
+const playerItemsElements = document.querySelectorAll("#player > .items");
 const fightElement = document.querySelector("#fight");
 const playerElement = document.querySelector("#player");
 const enemyElement = document.querySelector("#enemy");
+const enemyItemElement = document.querySelector("#enemy > .items");
 const resultElement = document.querySelector("#result");
 const retryButton = document.querySelector("#retry");
 
 const items = ["rock", "paper", "scissors"];
 
-itemsElements.forEach((e) =>
-  e.addEventListener("click", function (e) {
-    itemChosen(e.target.id);
-  })
-);
+playerItemsElements.forEach((e) => e.addEventListener("click", itemChosen));
 
 retryButton.addEventListener("click", function () {
-  itemsContainer.classList.add("show");
-  fightElement.classList.remove("show");
+  enemyItemElement.classList.remove("show");
+  playerItemsElements.forEach((e) => {
+    e.addEventListener("click", itemChosen);
+
+    if (!e.classList.contains("show")) e.classList.add("show");
+  });
   resultElement.classList.remove("show");
   retryButton.classList.remove("show");
 });
 
-function itemChosen(playerItem) {
-  itemsContainer.classList.remove("show");
-  fightElement.classList.add("show");
+function itemChosen(e) {
+  const playerItem = e.target.id;
+  playerItemsElements.forEach((e) => {
+    e.removeEventListener("click", itemChosen);
+    if (e.id !== playerItem) e.classList.remove("show");
+  });
   resultElement.classList.add("show");
   retryButton.classList.add("show");
   const enemyItem = getRandomItem();
-  playerElement.setAttribute("src", `assets/${playerItem}.png`);
-  enemyElement.setAttribute("src", `assets/${enemyItem}.png`);
+  enemyItemElement.classList.add("show");
+  enemyItemElement.setAttribute("src", `assets/${enemyItem}.png`);
   if (playerItem === enemyItem) {
     resultElement.textContent = "Draw";
   } else if (
