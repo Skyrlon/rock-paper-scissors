@@ -6,6 +6,8 @@ body {
 }
 
 .items,
+#losing-item,
+.paper-parts,
 #result,
 #retry {
   display: none;
@@ -46,7 +48,8 @@ body {
   align-items: center;
 }
 
-.items {
+.items,
+#losing-item {
   height: 25%;
 }
 
@@ -64,4 +67,48 @@ body {
   left: 50%;
   bottom: calc(0% + 5rem);
   transform: translate(-50%, 0%);
+}
+
+#losing-item.show {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.paper-parts.show {
+  display: block;
+  background-image: url("assets/paper.png");
+  width: 100%;
+  height: 50%;
+  background-size: 50%;
+  background-repeat: no-repeat;
+}
+
+.paper-parts.top {
+  transform-origin: center left;
+  animation: 1s linear 1s forwards running cut-paper-top;
+}
+
+.paper-parts.bottom {
+  background-position: 0% 100%;
+  transform-origin: center left;
+  animation: 1s linear 1s forwards running cut-paper-bottom;
+}
+
+@keyframes cut-paper-top {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-20deg);
+  }
+}
+
+@keyframes cut-paper-bottom {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(20deg);
+  }
 }

@@ -41,6 +41,14 @@ function itemChosen(e) {
   ) {
     resultElement.textContent = "Win";
   } else {
+    document.querySelector("#losing-item").classList.add("show");
+    if (playerItem === "paper") {
+      document
+        .querySelectorAll(".paper-parts")
+        .forEach((e) => e.classList.add("show"));
+      document.querySelector("#paper").removeEventListener("click", itemChosen);
+      document.querySelector("#paper").classList.remove("show");
+    }
     resultElement.textContent = "Loose";
   }
 }
