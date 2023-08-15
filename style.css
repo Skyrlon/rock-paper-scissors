@@ -8,6 +8,7 @@ body {
 .items,
 #losing-item,
 .paper-parts,
+.scissors-parts,
 #result,
 #retry {
   display: none;
@@ -72,6 +73,7 @@ body {
 #losing-item.show {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   aspect-ratio: 1 / 1;
   height: 25%;
 }
@@ -95,6 +97,37 @@ body {
   animation: 1s linear 1s forwards running cut-paper-bottom;
 }
 
+.scissors-parts.show {
+  display: block;
+  background-image: url("assets/scissors.png");
+  width: 50%;
+  height: 50%;
+  background-size: 200% 200%;
+  background-repeat: no-repeat;
+  transform-origin: 20% center;
+  animation: 0.5s linear 1s forwards running;
+}
+
+.scissors-parts.top-left {
+  background-position: 0% 0%;
+  animation-name: broken-scissors-top-left;
+}
+
+.scissors-parts.bottom-left {
+  background-position: 0% 100%;
+  animation-name: broken-scissors-bottom-left;
+}
+
+.scissors-parts.top-right {
+  background-position: 100% 0%;
+  animation-name: broken-scissors-top-right;
+}
+
+.scissors-parts.bottom-right {
+  background-position: 100% 100%;
+  animation-name: broken-scissors-bottom-right;
+}
+
 @keyframes cut-paper-top {
   from {
     transform: rotate(0deg);
@@ -110,5 +143,41 @@ body {
   }
   to {
     transform: rotate(20deg);
+  }
+}
+
+@keyframes broken-scissors-top-left {
+  from {
+    transform: translate(0%, 0%);
+  }
+  to {
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes broken-scissors-bottom-left {
+  from {
+    transform: translate(0%, 0%);
+  }
+  to {
+    transform: translate(-50%, 50%);
+  }
+}
+
+@keyframes broken-scissors-top-right {
+  from {
+    transform: translate(0%, 0%);
+  }
+  to {
+    transform: translate(50%, -50%);
+  }
+}
+
+@keyframes broken-scissors-bottom-right {
+  from {
+    transform: translate(0%, 0%);
+  }
+  to {
+    transform: translate(50%, 50%);
   }
 }

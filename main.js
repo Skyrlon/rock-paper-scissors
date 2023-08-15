@@ -49,6 +49,15 @@ function itemChosen(e) {
       document.querySelector("#paper").removeEventListener("click", itemChosen);
       document.querySelector("#paper").classList.remove("show");
     }
+    if (playerItem === "scissors") {
+      document
+        .querySelectorAll(".scissors-parts")
+        .forEach((e) => e.classList.add("show"));
+      document
+        .querySelector("#scissors")
+        .removeEventListener("click", itemChosen);
+      document.querySelector("#scissors").classList.remove("show");
+    }
     resultElement.textContent = "Loose";
   }
 }
