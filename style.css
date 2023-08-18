@@ -7,6 +7,7 @@ body {
 
 .items,
 #losing-item,
+#winning-item,
 .paper-parts,
 .scissors-parts,
 #result,
@@ -50,7 +51,8 @@ body {
 }
 
 .items,
-#losing-item {
+#losing-item,
+#wining-item {
   height: 25%;
 }
 
@@ -70,7 +72,8 @@ body {
   transform: translate(-50%, 0%);
 }
 
-#losing-item.show {
+#losing-item.show,
+#winning-item.show {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -128,6 +131,15 @@ body {
   animation-name: broken-scissors-bottom-right;
 }
 
+.scissors-cutting {
+  background-image: url("assets/scissors.png");
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+  animation: 1s linear 1s forwards running;
+  animation-name: scissors-cutting;
+}
+
 @keyframes cut-paper-top {
   from {
     transform: rotate(0deg);
@@ -179,5 +191,18 @@ body {
   }
   to {
     transform: translate(50%, 50%);
+  }
+}
+
+@keyframes scissors-cutting {
+  0% {
+    transform: translate(0%, 0%);
+  }
+  50% {
+    transform: translate(0%, 0%) rotate(90deg);
+  }
+
+  100% {
+    transform: translate(600%, 0%) rotate(90deg);
   }
 }

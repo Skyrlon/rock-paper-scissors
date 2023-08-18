@@ -39,6 +39,12 @@ function itemChosen(e) {
     (playerItem === "paper" && enemyItem === "rock") ||
     (playerItem === "scissors" && enemyItem === "paper")
   ) {
+    document.querySelector("#winning-item").classList.add("show");
+    if (playerItem === "scissors") {
+      document.querySelector("#scissors").removeEventListener("click", itemChosen);
+      document.querySelector("#scissors").classList.remove("show");
+      document.querySelector(".scissors-cutting").classList.add("show");
+    }
     resultElement.textContent = "Win";
   } else {
     document.querySelector("#losing-item").classList.add("show");
