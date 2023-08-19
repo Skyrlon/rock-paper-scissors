@@ -41,9 +41,18 @@ function itemChosen(e) {
   ) {
     document.querySelector("#winning-item").classList.add("show");
     if (playerItem === "scissors") {
-      document.querySelector("#scissors").removeEventListener("click", itemChosen);
+      document
+        .querySelector("#scissors")
+        .removeEventListener("click", itemChosen);
       document.querySelector("#scissors").classList.remove("show");
       document.querySelector(".scissors-cutting").classList.add("show");
+    }
+    if (playerItem === "paper") {
+      document
+        .querySelector("#paper")
+        .removeEventListener("click", itemChosen);
+      document.querySelector("#paper").classList.remove("show");
+      document.querySelector(".paper-covering").classList.add("show");
     }
     resultElement.textContent = "Win";
   } else {
