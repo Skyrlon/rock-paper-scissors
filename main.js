@@ -54,6 +54,13 @@ function itemChosen(e) {
       document.querySelector("#paper").classList.remove("show");
       document.querySelector(".paper-covering").classList.add("show");
     }
+    if (playerItem === "rock") {
+      document
+        .querySelector("#rock")
+        .removeEventListener("click", itemChosen);
+      document.querySelector("#rock").classList.remove("show");
+      document.querySelector(".rock-breaking").classList.add("show");
+    }
     resultElement.textContent = "Win";
   } else {
     document.querySelector("#losing-item").classList.add("show");

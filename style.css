@@ -12,6 +12,7 @@ body {
 .scissors-parts,
 .scissors-cutting,
 .paper-covering,
+.rock-breaking,
 #result,
 #retry {
   display: none;
@@ -153,6 +154,16 @@ body {
   animation-name: paper-covering;
 }
 
+.rock-breaking.show {
+  display: block;
+  background-image: url("assets/rock.png");
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+  animation: 1s linear 1s forwards running;
+  animation-name: rock-breaking;
+}
+
 @keyframes cut-paper-top {
   from {
     transform: rotate(0deg);
@@ -230,5 +241,23 @@ body {
 
   100% {
     transform: translate(550%, 0%) rotate(90deg);
+  }
+}
+
+@keyframes rock-breaking {
+  0% {
+    transform: translate(0%, 0%);
+  }
+  30% {
+    transform: translate(0%, -100%) rotate(45deg);
+  }
+  80% {
+    transform: translate(550%, -100%) rotate(45deg);
+  }
+  90% {
+    transform: translate(550%, 0%) rotate(45deg);
+  }
+  100% {
+    transform: translate(550%, -100%) rotate(45deg);
   }
 }
