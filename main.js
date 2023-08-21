@@ -22,64 +22,53 @@ retryButton.addEventListener("click", function () {
 });
 
 function itemChosen(e) {
-  const playerItem = e.target.id;
+  const itemsElements = [
+    { item: "rock", winning: ".rock-breaking", losing: ".losing-rock" },
+    { item: "paper", winning: ".paper-covering", losing: ".paper-parts" },
+    {
+      item: "scissors",
+      winning: ".scissors-cutting",
+      losing: ".scissors-parts",
+    },
+  ];
+  const playerItemId = e.target.id;
+  const playerItem = itemsElements.find(
+    (element) => element.item === playerItemId
+  );
   playerItemsElements.forEach((e) => {
     e.removeEventListener("click", itemChosen);
-    if (e.id !== playerItem) e.classList.remove("show");
+    if (e.id !== playerItemId) e.classList.remove("show");
   });
   resultElement.classList.add("show");
   retryButton.classList.add("show");
   const enemyItem = getRandomItem();
   enemyItemElement.classList.add("show");
   enemyItemElement.setAttribute("src", `assets/${enemyItem}.png`);
-  if (playerItem === enemyItem) {
+  if (playerItemId === enemyItem) {
     resultElement.textContent = "Draw";
   } else if (
-    (playerItem === "rock" && enemyItem === "scissors") ||
-    (playerItem === "paper" && enemyItem === "rock") ||
-    (playerItem === "scissors" && enemyItem === "paper")
+    (playerItemId === "rock" && enemyItem === "scissors") ||
+    (playerItemId === "paper" && enemyItem === "rock") ||
+    (playerItemId === "scissors" && enemyItem === "paper")
   ) {
     document.querySelector("#winning-item").classList.add("show");
-    if (playerItem === "scissors") {
-      document
-        .querySelector("#scissors")
-        .removeEventListener("click", itemChosen);
-      document.querySelector("#scissors").classList.remove("show");
-      document.querySelector(".scissors-cutting").classList.add("show");
-    }
-    if (playerItem === "paper") {
-      document
-        .querySelector("#paper")
-        .removeEventListener("click", itemChosen);
-      document.querySelector("#paper").classList.remove("show");
-      document.querySelector(".paper-covering").classList.add("show");
-    }
-    if (playerItem === "rock") {
-      document
-        .querySelector("#rock")
-        .removeEventListener("click", itemChosen);
-      document.querySelector("#rock").classList.remove("show");
-      document.querySelector(".rock-breaking").classList.add("show");
-    }
+    document
+      .querySelector(`#${playerItem.item}`)
+      .removeEventListener("click", itemChosen);
+    document.querySelector(`#${playerItem.item}`).classList.remove("show");
+    document.querySelector(`${playerItem.winning}`).classList.add("show");
+
     resultElement.textContent = "Win";
   } else {
     document.querySelector("#losing-item").classList.add("show");
-    if (playerItem === "paper") {
-      document
-        .querySelectorAll(".paper-parts")
-        .forEach((e) => e.classList.add("show"));
-      document.querySelector("#paper").removeEventListener("click", itemChosen);
-      document.querySelector("#paper").classList.remove("show");
-    }
-    if (playerItem === "scissors") {
-      document
-        .querySelectorAll(".scissors-parts")
-        .forEach((e) => e.classList.add("show"));
-      document
-        .querySelector("#scissors")
-        .removeEventListener("click", itemChosen);
-      document.querySelector("#scissors").classList.remove("show");
-    }
+    document
+      .querySelectorAll(`${playerItem.losing}`)
+      .forEach((e) => e.classList.add("show"));
+    document
+      .querySelector(`#${playerItem.item}`)
+      .removeEventListener("click", itemChosen);
+    document.querySelector(`#${playerItem.item}`).classList.remove("show");
+
     resultElement.textContent = "Loose";
   }
 }
